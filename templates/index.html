@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Generator</title>
+
+    <!-- Load CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <h1>Text Generator</h1>
+    <form id="textForm">
+        <label for="inputText">Enter Text:</label>
+        <textarea id="inputText" name="inputText" rows="4" cols="50"></textarea>
+        <br>
+        <label for="outputLength">Desired Output Length:</label>
+        <input type="number" id="outputLength" name="outputLength" value="1000">
+        <br>
+        <button type="submit">Process Text</button>
+    </form>
+    <h2>Output Text:</h2>
+    <p id="outputText"></p>
+
+    <!-- Load script -->
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+</body>
+</html>
