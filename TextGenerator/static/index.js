@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const inputText = document.getElementById("inputText");
     const outputLength = document.getElementById("outputLength");
     const outputText = document.getElementById("outputText");
+    const loading = document.getElementById("loading");
 
     textForm.addEventListener("submit", function(event) {
         event.preventDefault();
@@ -11,6 +12,10 @@ document.addEventListener("DOMContentLoaded", function() {
             text: inputText.value,
             length: parseInt(outputLength.value)
         };
+        
+        // Show the loading screen
+        loading.style.display = "block";
+        outputText.textContent = ""; // Clear previous output
 
         // Send a POST request to the '/process' route
         fetch('/process', {
@@ -22,11 +27,14 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(response => response.json())
         .then(data => {
-            // Update the output text with the response from the server
+            // Hide the loading screen and update the output text with the response from the server
+            loading.style.display = "none";
             outputText.textContent = data.output_text;
         })
         .catch(error => {
             console.error('Error:', error);
+            // Hide the loading screen in case of an error
+            loading.style.display = "none";
         });
     });
 });
